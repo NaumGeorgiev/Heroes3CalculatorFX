@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#SelectComponent" prefHeight="576.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.DamageUIController">
+   <children>
+      <RadioButton fx:id="expertOffense" layoutX="302.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" text="Expert">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="98.0" text="Offense:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <RadioButton fx:id="basicOffense" layoutX="134.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" text="Basic">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="noOffense" layoutX="82.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" selected="true" text="No">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="advancedOffense" layoutX="203.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" text="Advanced">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="expertArmorer" layoutX="302.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" text="Expert">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="14.0" layoutY="47.0" prefHeight="16.0" prefWidth="98.0" text="Armorer:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <RadioButton fx:id="basicArmorer" layoutX="134.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" text="Basic">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="noArmorer" layoutX="82.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" selected="true" text="No">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="advancedArmorer" layoutX="203.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" text="Advanced">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="expertArchery" layoutX="302.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" text="Expert">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="14.0" layoutY="80.0" prefHeight="16.0" prefWidth="98.0" text="Archery:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <RadioButton fx:id="basicArchery" layoutX="134.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" text="Basic">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="noArchery" layoutX="82.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" selected="true" text="No">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="advancedArchery" layoutX="203.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" text="Advanced">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <TextField fx:id="offenseField" focusTraversable="false" layoutX="389.0" layoutY="10.0" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="armorerField" focusTraversable="false" layoutX="389.0" layoutY="44.0" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="archeryField" focusTraversable="false" layoutX="389.0" layoutY="77.0" prefHeight="24.0" prefWidth="42.0" />
+      <Label focusTraversable="false" layoutX="14.0" layoutY="125.0" prefHeight="17.0" prefWidth="157.0" text="Hero's attack skill">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="attackField" focusTraversable="false" layoutX="14.0" layoutY="155.0" prefHeight="24.0" prefWidth="42.0" />
+      <Label focusTraversable="false" layoutX="290.0" layoutY="125.0" prefHeight="17.0" prefWidth="157.0" text="Hero's defence skill">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="defenceField" focusTraversable="false" layoutX="290.0" layoutY="154.0" prefHeight="24.0" prefWidth="42.0" />
+      <ComboBox fx:id="attackerComboBox" focusTraversable="false" layoutX="14.0" layoutY="196.0" onAction="#setMeleeShotSumVisibility" prefHeight="25.0" prefWidth="141.0" />
+      <TextField fx:id="creatureCountField" focusTraversable="false" layoutX="154.0" layoutY="196.0" prefHeight="24.0" prefWidth="42.0" />
+      <ComboBox fx:id="defenderComboBox" focusTraversable="false" layoutX="290.0" layoutY="196.0" prefHeight="25.0" prefWidth="141.0" />
+      <Button fx:id="swapButton" focusTraversable="false" layoutX="205.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="⮀" />
+      <Button fx:id="commitButton" focusTraversable="false" layoutX="21.0" layoutY="267.0" mnemonicParsing="false" onAction="#displayDamage" prefHeight="68.0" prefWidth="415.0" text="Submit" />
+      <Label fx:id="label" focusTraversable="false" layoutX="21.0" layoutY="380.0" prefHeight="80.0" prefWidth="459.0" text="Label" />
+      <ImageView fx:id="offenseImageView" fitHeight="99.0" fitWidth="98.0" layoutX="447.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/BasicOffense.png" />
+         </image></ImageView>
+      <ImageView fx:id="archeryImageView" fitHeight="99.0" fitWidth="98.0" layoutX="545.0" layoutY="8.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/BasicArchery.png" />
+         </image></ImageView>
+      <ImageView fx:id="armorerImageView" fitHeight="99.0" fitWidth="98.0" layoutX="643.0" layoutY="8.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/BasicArmorer.png" />
+         </image></ImageView>
+      <ToggleButton fx:id="meleeButton" focusTraversable="false" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" onAction="#setShotSumNotSelected" prefHeight="24.0" prefWidth="76.0" text="Melee" />
+      <ToggleButton fx:id="shotsButton" focusTraversable="false" layoutX="90.0" layoutY="221.0" mnemonicParsing="false" onAction="#setMeleeNotSelected" prefHeight="24.0" prefWidth="106.0" text="ShotSum" />
+   </children>
+</AnchorPane>
