@@ -55,11 +55,11 @@ public class DamageUIController {
                 setToNumeric(attackField);
                 setToNumeric(defenceField);
                 setToNumeric(creatureCountField);
-                fill(attackerComboBox, creatures);
-                fill(defenderComboBox, creatures);
+                Utilities.addFilter(attackerComboBox, creatures);
+                Utilities.fill(defenderComboBox, creatures);
                 // setFocuseUponClickingArrow(attackerComboBox);
 
-                attackerComboBox.getSelectionModel().select("Angel");
+                // attackerComboBox.getSelectionModel().select("Angel");
                 defenderComboBox.getSelectionModel().select("Angel");
                 setImageViewDefault(offenseImageView, skillsIcons[0]);
                 setImageViewDefault(archeryImageView, skillsIcons[3]);
@@ -89,11 +89,7 @@ public class DamageUIController {
         //         });
         // }
 
-        private static void fill(ComboBox<String> comboBox, Creature[] creatures) {
-                String[] temp = Creature.createNames(creatures);
-                ObservableList<String> creatureNames = FXCollections.observableArrayList(temp);
-                comboBox.setItems(creatureNames);
-        }
+      
 
         private static void setToNumeric(TextField textField) {
                 textField.textProperty().addListener(new ChangeListener<String>() {

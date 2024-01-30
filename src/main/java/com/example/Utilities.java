@@ -1,15 +1,19 @@
 package com.example;
 
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class Utilities {
 
-       
         // public static void addListener(ComboBox<String> comboBox) {
         // comboBox.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         // @Override
@@ -49,19 +53,20 @@ public class Utilities {
                 return null;
         }
 
-        // public static RadioButton[] getFocusedToggleGroup(ToggleGroup offense, ToggleGroup armorer,
-        //                 ToggleGroup archery) {
-        //         ToggleGroup[] groups = { offense, armorer, archery };
-        //         for (int i = 0; i < groups.length; i++) {
-        //                 ObservableList<Toggle> radioButtonsList = groups[i].getToggles();
-        //                 RadioButton[] radioButtons = radioButtonsList.toArray(new RadioButton[0]);
-        //                 for (int j = 0; j < radioButtons.length; j++) {
-        //                         if (((RadioButton) radioButtons[j]).isFocused()) {
-        //                                 return radioButtons;
-        //                         }
-        //                 }
-        //         }
-        //         return null;
+        // public static RadioButton[] getFocusedToggleGroup(ToggleGroup offense,
+        // ToggleGroup armorer,
+        // ToggleGroup archery) {
+        // ToggleGroup[] groups = { offense, armorer, archery };
+        // for (int i = 0; i < groups.length; i++) {
+        // ObservableList<Toggle> radioButtonsList = groups[i].getToggles();
+        // RadioButton[] radioButtons = radioButtonsList.toArray(new RadioButton[0]);
+        // for (int j = 0; j < radioButtons.length; j++) {
+        // if (((RadioButton) radioButtons[j]).isFocused()) {
+        // return radioButtons;
+        // }
+        // }
+        // }
+        // return null;
         // }
 
         public static int getTextFieldNumberValue(TextField textField) {
@@ -109,16 +114,50 @@ public class Utilities {
                 }
         }
         // public static void attachEventHadnlers(RadioButton[] radioButtons){
-        //         for(int i=0; i<radioButtons.length; i++){
-        //                 radioButtons[i].setOnKeyPressed(new EventHandler<KeyEvent>() {
-        //                 @Override
-        //                 public void handle(KeyEvent event) {
-        //                     if (event.getCode() == KeyCode.UP) {
-                                
-        //                     }
-        //                 }
-        //             });
-        //         }
-        // }
+        // for(int i=0; i<radioButtons.length; i++){
+        // radioButtons[i].setOnKeyPressed(new EventHandler<KeyEvent>() {
+        // @Override
+        // public void handle(KeyEvent event) {
+        // if (event.getCode() == KeyCode.UP) {
 
-}
+        // }
+        // }
+        // });
+        // }
+        // }
+        public static void fill(ComboBox<String> comboBox, Creature[] creatures) {
+                String[] temp = Creature.createNames(creatures);
+                ObservableList<String> creatureNames = FXCollections.observableArrayList(temp);
+                comboBox.setItems(creatureNames);
+        }
+
+        public static void addFilter(ComboBox<String> comboBox, Creature[] creatures) {
+                ObservableList<String> items = FXCollections.observableArrayList(Creature.createNames(creatures));
+        
+                comboBox.setItems(items);
+        
+                comboBox.setOnKeyReleased(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if(event.getCode() ==KeyCode.CONTROL){
+                                comboBox.show();
+                        }
+                        if(event.getCode()==KeyCode.ESCAPE){
+                                comboBox.getEditor().setText("");
+                        }
+                        String input = comboBox.getEditor().getText();
+        
+                        ObservableList<String> filteredItems = FXCollections.observableArrayList();
+        
+                        for (String item : items) {
+                            if (item.toLowerCase().contains(input.toLowerCase())) {
+                                filteredItems.add(item);
+                            }
+                        }
+        
+                        comboBox.setItems(filteredItems);
+                    }
+                });
+            }
+        }
+
