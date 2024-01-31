@@ -103,7 +103,7 @@
       <TextField fx:id="defenceField" layoutX="290.0" layoutY="154.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
       <ComboBox fx:id="attackerComboBox" editable="true" layoutX="14.0" layoutY="196.0" onAction="#setMeleeShotSumVisibility" prefHeight="25.0" prefWidth="141.0" />
       <TextField fx:id="creatureCountField" layoutX="154.0" layoutY="196.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
-      <ComboBox fx:id="defenderComboBox" layoutX="290.0" layoutY="196.0" prefHeight="25.0" prefWidth="141.0" />
+      <ComboBox fx:id="defenderComboBox" editable="true" layoutX="290.0" layoutY="196.0" prefHeight="25.0" prefWidth="141.0" />
       <Button fx:id="swapButton" focusTraversable="false" layoutX="205.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="⮀" />
       <Button fx:id="commitButton" layoutX="21.0" layoutY="267.0" mnemonicParsing="false" onAction="#displayDamage" prefHeight="68.0" prefWidth="415.0" text="Submit" />
       <Label fx:id="label" focusTraversable="false" layoutX="21.0" layoutY="380.0" prefHeight="80.0" prefWidth="459.0" text="Label" />

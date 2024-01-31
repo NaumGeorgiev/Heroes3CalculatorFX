@@ -35,47 +35,26 @@ public class DamageUIController {
 
         public void initialize() {
 
-                setToNumeric(armorerField);
-                setToNumeric(offenseField);
-                setToNumeric(archeryField);
-                setToNumeric(attackField);
-                setToNumeric(defenceField);
-                setToNumeric(creatureCountField);
+                Utilities.setToNumeric(armorerField);
+                Utilities.setToNumeric(offenseField);
+                Utilities.setToNumeric(archeryField);
+                Utilities.setToNumeric(attackField);
+                Utilities.setToNumeric(defenceField);
+                Utilities.setToNumeric(creatureCountField);
                 Utilities.addFilter(attackerComboBox, creatures);
-                Utilities.fill(defenderComboBox, creatures);
+                Utilities.addFilter(defenderComboBox, creatures);
 
                 // attackerComboBox.getSelectionModel().select("Angel");
-                defenderComboBox.getSelectionModel().select("Angel");
-                setImageViewDefault(offenseImageView, skillsIcons[0]);
-                setImageViewDefault(archeryImageView, skillsIcons[3]);
-                setImageViewDefault(armorerImageView, skillsIcons[6]);
+                // defenderComboBox.getSelectionModel().select("Angel");
+                Utilities.setImageViewDefault(offenseImageView, skillsIcons[0]);
+                Utilities.setImageViewDefault(archeryImageView, skillsIcons[3]);
+                Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
                 meleeButton.setVisible(false);
                 shotsButton.setVisible(false);
         }
 
 
-        private static void setImageViewDefault(ImageView skillImageView, Image basicSkillIcon) {
-                skillImageView.setImage(basicSkillIcon);
-                skillImageView.setOpacity(0.5);
-        }
-
-
-        private static void setToNumeric(TextField textField) {
-                textField.textProperty().addListener(new ChangeListener<String>() {
-                        @Override
-                        public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                        String newValue) {
-                                if (!newValue.matches("\\d*")) {
-                                        textField.setText(newValue.replaceAll("[^\\d]", ""));
-                                }
-                        }
-                });
-        }
-        
-        @FXML
-        public void filterComboBox() {
-
-        }
+   
 
         @FXML
         public void clearField(KeyEvent keyEvent) {
@@ -143,7 +122,7 @@ public class DamageUIController {
         @FXML
         public void displayDamage() {
                 String attackerName=attackerComboBox.getValue();
-                String defenderName=attackerComboBox.getValue();
+                String defenderName=defenderComboBox.getValue();
                 if(attackerName==null)
                 attackerName="";
                 if(defenderName==null)
@@ -176,10 +155,9 @@ public class DamageUIController {
                                         armorer, offence, archery, offenseHeroLevel, archeryHeroLevel, armorerHeroLevel,
                                         isRanged, minDamage, maxDamage, creatureCount);
                         int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected());
-                        Utilities.setLabel(label, damage);
+                        Utilities.setDamageLabel(label, damage);
 
                 }
                 }
 
         }
-
