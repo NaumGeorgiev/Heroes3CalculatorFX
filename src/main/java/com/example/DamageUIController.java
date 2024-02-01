@@ -181,12 +181,14 @@ public class DamageUIController {
                         int attack = Utilities.getTextFieldNumberValue(attackField) + attacker.attack;
                         int defence = Utilities.getTextFieldNumberValue(defenceField) + defender.defence;
                         int creatureCount = Utilities.getTextFieldNumberValue(creatureCountField);
+                        boolean isAdvancedBlessed=advancedBless.isSelected();
+                        boolean isAdvancedCursed=advancedCurse.isSelected();
 
                         DamageCalculator damageCalculator = new DamageCalculator(attacker.name, defender.name, attack,
                                         defence,
                                         armorer, offence, archery, offenseHeroLevel, archeryHeroLevel, armorerHeroLevel,
                                         isRanged, minDamage, maxDamage, creatureCount);
-                        int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected());
+                        int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected(), isAdvancedBlessed, isAdvancedCursed);
                         Utilities.setDamageLabel(label, damage, defender.health);
 
                 }

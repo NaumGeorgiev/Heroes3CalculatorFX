@@ -159,12 +159,20 @@ public class DamageCalculator {
 		}
 	}
 
-	public void calculateAllShots(Creature attacker) {
-		minDamage *= attacker.shotCount;
-		maxDamage *= attacker.shotCount;
+	private void calculateBless(Creature attacker){
+		this.maxDamage+=1;
+		this.minDamage=maxDamage;
+	}
+	private void calculateCurse(Creature attacker){
+		this.minDamage-=1;
+		this.maxDamage=minDamage;
 	}
 
-	public int[] calculate(Creature attacker, Creature defender, boolean allShots) {
+	public int[] calculate(Creature attacker, Creature defender, boolean allShots, boolean advancedBless, boolean advancedCurse) {
+		if(advancedBless)
+		calculateBless(attacker);
+		else if(advancedCurse)
+		calculateCurse(attacker);
 		if (this.isRanged==false)
 			calculateMelee(attacker);
 		else if (attacker.isDoubleShooting)
