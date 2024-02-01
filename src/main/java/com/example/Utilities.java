@@ -101,7 +101,7 @@ public class Utilities {
                 return skillIcons;
 
         }
-        public static void setSpellBuffsImageView(ImageView blessImageView, ImageView curseImageView, RadioButton advancedBless, RadioButton advancedCurse){
+        public static void setSpellBuffsImageView(ImageView blessImageView, ImageView curseImageView, RadioButton advancedBless, RadioButton advancedCurse,RadioButton noSpellBuff){
                 if(advancedBless.isSelected()){
                         curseImageView.setOpacity(0.5);
                         blessImageView.setOpacity(1);
@@ -109,6 +109,10 @@ public class Utilities {
                 else if(advancedCurse.isSelected()){
                         blessImageView.setOpacity(0.5);
                         curseImageView.setOpacity(1);
+                }
+                else if(noSpellBuff.isSelected()){
+                        blessImageView.setOpacity(0.5);
+                        curseImageView.setOpacity(0.5);
                 }
         }
         public static void setSkillImageView(ImageView skillImageView, RadioButton no, RadioButton basic,
@@ -138,7 +142,6 @@ public class Utilities {
                         @Override
                         public void handle(KeyEvent event) {
                                 comboBox.show();
-                                // boolean inputEqualsItem=false;
                                 if (event.getCode() == KeyCode.ESCAPE) {
                                         comboBox.getEditor().setText("");
                                         comboBox.hide();
@@ -153,15 +156,8 @@ public class Utilities {
                                 for (String item : items) {
                                         if (item.toLowerCase().contains(input.toLowerCase())) {
                                                 filteredItems.add(item);
-                                                if (item.toLowerCase().equals(input.toLowerCase())) {
-                                                        // inputEqualsItem=true;
-                                                }
-
                                         }
                                 }
-                                // if(inputEqualsItem)
-                                // comboBox.setItems(items);
-                                // else
                                 comboBox.setItems(filteredItems);
                         }
                 });

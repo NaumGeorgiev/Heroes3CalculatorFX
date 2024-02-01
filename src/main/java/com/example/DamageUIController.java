@@ -21,7 +21,7 @@ public class DamageUIController {
         private ImageView archeryImageView, armorerImageView, offenseImageView, blessImageView, curseImageView;
         @FXML
         private RadioButton noOffense, basicOffense, advancedOffense, expertOffense, noArmorer, basicArmorer,
-                        advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery, advancedBless, advancedCurse;
+                        advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery, advancedBless, advancedCurse, noSpellBuffs;
         @FXML
         private TextField offenseField, armorerField, archeryField, attackField, defenceField, creatureCountField;
         @FXML
@@ -44,8 +44,8 @@ public class DamageUIController {
                 Utilities.addFilter(attackerComboBox, creatures);
                 Utilities.addFilter(defenderComboBox, creatures);
 
-                attackerComboBox.getSelectionModel().select("Angel");
-                defenderComboBox.getSelectionModel().select("Angel");
+                // attackerComboBox.getSelectionModel().select("Angel");
+                // defenderComboBox.getSelectionModel().select("Angel");
                 Utilities.setImageViewDefault(offenseImageView, skillsIcons[0]);
                 Utilities.setImageViewDefault(archeryImageView, skillsIcons[3]);
                 Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
@@ -94,7 +94,7 @@ public class DamageUIController {
         }
         @FXML
         public void setSpellBuffIcon(){
-                Utilities.setSpellBuffsImageView(blessImageView, curseImageView, advancedBless, advancedCurse);
+                Utilities.setSpellBuffsImageView(blessImageView, curseImageView, advancedBless, advancedCurse, noSpellBuffs);
         }
 
         @FXML

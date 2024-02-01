@@ -122,7 +122,7 @@
       <ToggleButton fx:id="meleeButton" focusTraversable="false" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" onAction="#setShotSumNotSelected" prefHeight="24.0" prefWidth="76.0" text="Melee" />
       <ToggleButton fx:id="shotsButton" focusTraversable="false" layoutX="90.0" layoutY="221.0" mnemonicParsing="false" onAction="#setMeleeNotSelected" prefHeight="24.0" prefWidth="106.0" text="ShotSum" />
       <Button fx:id="clearButton" focusTraversable="false" layoutX="290.0" layoutY="221.0" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="141.0" text="Clear" />
-      <RadioButton fx:id="advancedBless" layoutX="467.0" layoutY="127.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" text="Advanced Bless">
+      <RadioButton fx:id="advancedBless" focusTraversable="false" layoutX="467.0" layoutY="127.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" text="Advanced Bless">
          <toggleGroup>
             <ToggleGroup fx:id="spellBuff" />
          </toggleGroup>
@@ -130,7 +130,7 @@
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="advancedCurse" layoutX="623.0" layoutY="127.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" text="Advanced Curse" toggleGroup="$spellBuff">
+      <RadioButton fx:id="advancedCurse" focusTraversable="false" layoutX="623.0" layoutY="127.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" text="Advanced Curse" toggleGroup="$spellBuff">
          <font>
             <Font size="14.0" />
          </font>
@@ -145,5 +145,10 @@
             <Image url="@../../../java/Bless.png" />
          </image>
       </ImageView>
+      <RadioButton fx:id="noSpellBuffs" focusTraversable="false" layoutX="575.0" layoutY="224.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" selected="true" text="None" toggleGroup="$spellBuff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
    </children>
 </AnchorPane>
