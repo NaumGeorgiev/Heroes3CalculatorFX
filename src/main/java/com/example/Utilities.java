@@ -101,8 +101,17 @@ public class Utilities {
                 return skillIcons;
 
         }
-
-        public static void setImageView(ImageView skillImageView, RadioButton no, RadioButton basic,
+        public static void setSpellBuffsImageView(ImageView blessImageView, ImageView curseImageView, RadioButton advancedBless, RadioButton advancedCurse){
+                if(advancedBless.isSelected()){
+                        curseImageView.setOpacity(0.5);
+                        blessImageView.setOpacity(1);
+                }
+                else if(advancedCurse.isSelected()){
+                        blessImageView.setOpacity(0.5);
+                        curseImageView.setOpacity(1);
+                }
+        }
+        public static void setSkillImageView(ImageView skillImageView, RadioButton no, RadioButton basic,
                         RadioButton advanced, RadioButton expert, Image basicIcon, Image advancedIcon,
                         Image ExpertIcon) {
                 if (no.isSelected()) {

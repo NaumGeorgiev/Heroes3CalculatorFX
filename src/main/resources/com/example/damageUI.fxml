@@ -122,5 +122,28 @@
       <ToggleButton fx:id="meleeButton" focusTraversable="false" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" onAction="#setShotSumNotSelected" prefHeight="24.0" prefWidth="76.0" text="Melee" />
       <ToggleButton fx:id="shotsButton" focusTraversable="false" layoutX="90.0" layoutY="221.0" mnemonicParsing="false" onAction="#setMeleeNotSelected" prefHeight="24.0" prefWidth="106.0" text="ShotSum" />
       <Button fx:id="clearButton" focusTraversable="false" layoutX="290.0" layoutY="221.0" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="141.0" text="Clear" />
+      <RadioButton fx:id="advancedBless" layoutX="467.0" layoutY="127.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" text="Advanced Bless">
+         <toggleGroup>
+            <ToggleGroup fx:id="spellBuff" />
+         </toggleGroup>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="advancedCurse" layoutX="623.0" layoutY="127.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" text="Advanced Curse" toggleGroup="$spellBuff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <ImageView fx:id="curseImageView" fitHeight="88.0" fitWidth="119.0" layoutX="623.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Curse.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="blessImageView" fitHeight="88.0" fitWidth="129.0" layoutX="468.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Bless.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

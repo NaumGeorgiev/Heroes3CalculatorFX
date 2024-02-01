@@ -18,10 +18,10 @@ public class DamageUIController {
         private static Creature[] creatures = Creature.createAll();
         private Image[] skillsIcons = Utilities.getSkillIcons();
         @FXML
-        private ImageView archeryImageView, armorerImageView, offenseImageView;
+        private ImageView archeryImageView, armorerImageView, offenseImageView, blessImageView, curseImageView;
         @FXML
         private RadioButton noOffense, basicOffense, advancedOffense, expertOffense, noArmorer, basicArmorer,
-                        advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery;
+                        advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery, advancedBless, advancedCurse;
         @FXML
         private TextField offenseField, armorerField, archeryField, attackField, defenceField, creatureCountField;
         @FXML
@@ -49,6 +49,8 @@ public class DamageUIController {
                 Utilities.setImageViewDefault(offenseImageView, skillsIcons[0]);
                 Utilities.setImageViewDefault(archeryImageView, skillsIcons[3]);
                 Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
+                Utilities.setImageViewDefault(blessImageView, new Image("Bless.png"));
+                Utilities.setImageViewDefault(curseImageView, new Image("Curse.png"));
                 meleeButton.setVisible(false);
                 shotsButton.setVisible(false);
         }
@@ -59,8 +61,6 @@ public class DamageUIController {
                 armorerField.setText("");
                 archeryField.setText("");
                 creatureCountField.setText("");
-                // attackerComboBox.getEditor().setText("");
-                // defenderComboBox.getEditor().setText("");
                 attackerComboBox.getSelectionModel().select(null);
                 defenderComboBox.getSelectionModel().select(null);
                 attackerComboBox.hide();
@@ -92,22 +92,26 @@ public class DamageUIController {
                                 creatureCountField.clear();
                 }
         }
+        @FXML
+        public void setSpellBuffIcon(){
+                Utilities.setSpellBuffsImageView(blessImageView, curseImageView, advancedBless, advancedCurse);
+        }
 
         @FXML
         public void setArcherySkillIcon() {
-                Utilities.setImageView(archeryImageView, noArchery, basicArchery, advancedArchery, expertArchery,
+                Utilities.setSkillImageView(archeryImageView, noArchery, basicArchery, advancedArchery, expertArchery,
                                 skillsIcons[3], skillsIcons[4], skillsIcons[5]);
         }
 
         @FXML
         public void setArmorerSkillIcon() {
-                Utilities.setImageView(armorerImageView, noArmorer, basicArmorer, advancedArmorer, expertArmorer,
+                Utilities.setSkillImageView(armorerImageView, noArmorer, basicArmorer, advancedArmorer, expertArmorer,
                                 skillsIcons[6], skillsIcons[7], skillsIcons[8]);
         }
 
         @FXML
         public void setOffenseSkillIcon() {
-                Utilities.setImageView(offenseImageView, noOffense, basicOffense, advancedOffense, expertOffense,
+                Utilities.setSkillImageView(offenseImageView, noOffense, basicOffense, advancedOffense, expertOffense,
                                 skillsIcons[0], skillsIcons[1], skillsIcons[2]);
         }
 
