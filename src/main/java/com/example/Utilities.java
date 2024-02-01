@@ -66,10 +66,22 @@ public class Utilities {
                 return Integer.parseInt(textField.getText());
         }
 
-        public static void setDamageLabel(Label label, int[] damage) {
-                label.setFont(new Font(22));
-                label.setText(damage[0]+"-"+damage[1]+": "+(damage[0]+damage[1])/2+" on average");
-                // label.setText(damage[0] + " " + damage[1]);
+        public static void setDamageLabel(Label label, int[] damage, int health) {
+                int averageDamage=(damage[0]+damage[1])/2;
+                label.setFont(new Font(28));
+                if(damage[0]==damage[1])
+                        label.setText(averageDamage+"\n"+averageDamage/health+"+"+averageDamage%health+" HP");
+                        else
+                label.setText(damage[0] + "-" + damage[1] + " | " + averageDamage + " on average\n"
+                                + damage[0] / health + "+" + damage[0] % health + " HP - " + damage[1] / health + "+"
+                                + damage[1] % health + " HP\n" + (averageDamage/health) + "+"
+                                + averageDamage % health + " HP on average");
+        }
+
+        public static void setIncorrectInputLabel(Label label) {
+                label.setFont(new Font(28));
+                label.setText("Invalid input");
+
         }
 
         public static Image[] getSkillIcons() {
@@ -107,19 +119,13 @@ public class Utilities {
                 }
         }
 
-        // public static void fill(ComboBox<String> comboBox, Creature[] creatures) {
-        //         String[] temp = Creature.createNames(creatures);
-        //         ObservableList<String> creatureNames = FXCollections.observableArrayList(temp);
-        //         comboBox.setItems(creatureNames);
-        // }
-
         public static void addFilter(ComboBox<String> comboBox, Creature[] creatures) {
                 ObservableList<String> items = FXCollections.observableArrayList(Creature.createNames(creatures));
 
                 comboBox.setItems(items);
-                
+
                 comboBox.setOnKeyReleased(new EventHandler<KeyEvent>() {
-                        
+
                         @Override
                         public void handle(KeyEvent event) {
                                 comboBox.show();
@@ -128,9 +134,9 @@ public class Utilities {
                                         comboBox.getEditor().setText("");
                                         comboBox.hide();
                                         return;
-                                    }
-                                    if(event.getCode()==KeyCode.DOWN || event.getCode()==KeyCode.UP)
-                                    return;
+                                }
+                                if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP)
+                                        return;
                                 String input = comboBox.getEditor().getText();
 
                                 ObservableList<String> filteredItems = FXCollections.observableArrayList();
@@ -138,7 +144,7 @@ public class Utilities {
                                 for (String item : items) {
                                         if (item.toLowerCase().contains(input.toLowerCase())) {
                                                 filteredItems.add(item);
-                                                if(item.toLowerCase().equals(input.toLowerCase())){
+                                                if (item.toLowerCase().equals(input.toLowerCase())) {
                                                         // inputEqualsItem=true;
                                                 }
 
@@ -151,4 +157,5 @@ public class Utilities {
                         }
                 });
         }
+        
 }

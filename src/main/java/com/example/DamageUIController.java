@@ -27,7 +27,7 @@ public class DamageUIController {
         @FXML
         private ComboBox<String> attackerComboBox, defenderComboBox;
         @FXML
-        private Button commitButton, swapButton;
+        private Button commitButton, swapButton, clearButton;
         @FXML
         private ToggleButton shotsButton, meleeButton;
         @FXML
@@ -44,15 +44,34 @@ public class DamageUIController {
                 Utilities.addFilter(attackerComboBox, creatures);
                 Utilities.addFilter(defenderComboBox, creatures);
 
-                // attackerComboBox.getSelectionModel().select("Angel");
-                // defenderComboBox.getSelectionModel().select("Angel");
+                attackerComboBox.getSelectionModel().select("Angel");
+                defenderComboBox.getSelectionModel().select("Angel");
                 Utilities.setImageViewDefault(offenseImageView, skillsIcons[0]);
                 Utilities.setImageViewDefault(archeryImageView, skillsIcons[3]);
                 Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
                 meleeButton.setVisible(false);
                 shotsButton.setVisible(false);
         }
-
+        public void clear(){
+                attackField.setText("");
+                defenceField.setText("");
+                offenseField.setText("");
+                armorerField.setText("");
+                archeryField.setText("");
+                creatureCountField.setText("");
+                // attackerComboBox.getEditor().setText("");
+                // defenderComboBox.getEditor().setText("");
+                attackerComboBox.getSelectionModel().select(null);
+                defenderComboBox.getSelectionModel().select(null);
+                attackerComboBox.hide();
+                defenderComboBox.hide();
+                noOffense.setSelected(true);
+                noArchery.setSelected(true);
+                noArmorer.setSelected(true);
+                offenseImageView.setImage(skillsIcons[0]);
+                archeryImageView.setImage(skillsIcons[3]);
+                armorerImageView.setImage(skillsIcons[6]);
+        }
 
    
 
@@ -118,6 +137,15 @@ public class DamageUIController {
         public void setShotSumNotSelected() {
                 shotsButton.setSelected(false);
         }
+        @FXML 
+        public void swap(){
+               
+                String attacker = attackerComboBox.getSelectionModel().getSelectedItem();
+                String defender = defenderComboBox.getSelectionModel().getSelectedItem();
+                clear();
+                attackerComboBox.getSelectionModel().select(defender);
+                defenderComboBox.getSelectionModel().select(attacker);
+        }
 
         @FXML
         public void displayDamage() {
@@ -130,7 +158,7 @@ public class DamageUIController {
                 Creature defender = Creature.getCreatureByName(creatures, defenderName);
                 Creature attacker = Creature.getCreatureByName(creatures, attackerName);
                 if(defender==null || attacker==null || creatureCountField.getText().isEmpty())
-                label.setText("Insert correct input");
+                Utilities.setIncorrectInputLabel(label);
                 else{
                         double minDamage = attacker.minDamage;
                         double maxDamage = attacker.maxDamage;
@@ -155,7 +183,7 @@ public class DamageUIController {
                                         armorer, offence, archery, offenseHeroLevel, archeryHeroLevel, armorerHeroLevel,
                                         isRanged, minDamage, maxDamage, creatureCount);
                         int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected());
-                        Utilities.setDamageLabel(label, damage);
+                        Utilities.setDamageLabel(label, damage, defender.health);
 
                 }
                 }
