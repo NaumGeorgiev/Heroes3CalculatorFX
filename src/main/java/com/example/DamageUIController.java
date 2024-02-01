@@ -23,7 +23,7 @@ public class DamageUIController {
         private RadioButton noOffense, basicOffense, advancedOffense, expertOffense, noArmorer, basicArmorer,
                         advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery, advancedBless, advancedCurse, noSpellBuffs;
         @FXML
-        private TextField offenseField, armorerField, archeryField, attackField, defenceField, creatureCountField;
+        private TextField offenseField, armorerField, archeryField, attackField, defenceField, creatureCountField, joustingField;
         @FXML
         private ComboBox<String> attackerComboBox, defenderComboBox;
         @FXML
@@ -41,6 +41,8 @@ public class DamageUIController {
                 Utilities.setToNumeric(attackField);
                 Utilities.setToNumeric(defenceField);
                 Utilities.setToNumeric(creatureCountField);
+                Utilities.setToNumeric(joustingField);
+                joustingField.setVisible(false);
                 Utilities.addFilter(attackerComboBox, creatures);
                 Utilities.addFilter(defenderComboBox, creatures);
 
@@ -71,6 +73,10 @@ public class DamageUIController {
                 offenseImageView.setImage(skillsIcons[0]);
                 archeryImageView.setImage(skillsIcons[3]);
                 armorerImageView.setImage(skillsIcons[6]);
+                offenseImageView.setOpacity(0.5);
+                armorerImageView.setOpacity(0.5);
+                archeryImageView.setOpacity(0.5);
+                noSpellBuffs.setSelected(true);
         }
 
    
@@ -116,10 +122,12 @@ public class DamageUIController {
         }
 
         @FXML
-        public void setMeleeShotSumVisibility() {
+        public void setMeleeShotSumJoustingVisibility() {
                 if (attackerComboBox.getSelectionModel().getSelectedItem() != null) {
                         meleeButton.setSelected(false);
                         shotsButton.setSelected(false);
+                        joustingField.setText("");
+                        joustingField.setVisible(false);
                         Creature creature=Creature.getCreatureByName(creatures,
                         attackerComboBox.getSelectionModel().getSelectedItem());
                         if (creature!=null && creature.isRanged) {
@@ -129,6 +137,8 @@ public class DamageUIController {
                                 meleeButton.setVisible(false);
                                 shotsButton.setVisible(false);
                         }
+                        if(creature.name.equals("Champion") || creature.name.equals("Cavalier"))
+                                joustingField.setVisible(true);
                 }
         }
 
@@ -180,6 +190,7 @@ public class DamageUIController {
                         int archeryHeroLevel = Utilities.getTextFieldNumberValue(archeryField);
                         int attack = Utilities.getTextFieldNumberValue(attackField) + attacker.attack;
                         int defence = Utilities.getTextFieldNumberValue(defenceField) + defender.defence;
+                        int joustingSteps=Utilities.getTextFieldNumberValue(joustingField);
                         int creatureCount = Utilities.getTextFieldNumberValue(creatureCountField);
                         boolean isAdvancedBlessed=advancedBless.isSelected();
                         boolean isAdvancedCursed=advancedCurse.isSelected();
@@ -188,7 +199,7 @@ public class DamageUIController {
                                         defence,
                                         armorer, offence, archery, offenseHeroLevel, archeryHeroLevel, armorerHeroLevel,
                                         isRanged, minDamage, maxDamage, creatureCount);
-                        int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected(), isAdvancedBlessed, isAdvancedCursed);
+                        int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected(), isAdvancedBlessed, isAdvancedCursed, joustingSteps);
                         Utilities.setDamageLabel(label, damage, defender.health);
 
                 }

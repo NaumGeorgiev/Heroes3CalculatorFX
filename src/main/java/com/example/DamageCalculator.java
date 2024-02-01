@@ -167,8 +167,15 @@ public class DamageCalculator {
 		this.minDamage-=1;
 		this.maxDamage=minDamage;
 	}
+	private void calculateJoustingBonus(Creature attacker, Creature defender, int joustingSteps){
+		if(defender.name.equals("Pikeman") || defender.name.equals("Halberdier"))
+		return;
+		this.minDamage*=0.05*joustingSteps+1;
+		this.maxDamage*=0.05*joustingSteps+1;
+	}
 
-	public int[] calculate(Creature attacker, Creature defender, boolean allShots, boolean advancedBless, boolean advancedCurse) {
+	public int[] calculate(Creature attacker, Creature defender, boolean allShots, boolean advancedBless, boolean advancedCurse, int joustingSteps) {
+		calculateJoustingBonus(attacker, defender, joustingSteps);
 		if(advancedBless)
 		calculateBless(attacker);
 		else if(advancedCurse)
