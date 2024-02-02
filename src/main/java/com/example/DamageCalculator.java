@@ -36,7 +36,7 @@ public class DamageCalculator {
 		this.creatureNumber = creatureNumber;
 	}
 
-	public int[] fianlCalculate(boolean allShots, int shotCount) {
+	private int[] fianlCalculate(boolean allShots, int shotCount) {
 
 		if (attackerName.equals("Behemoth")) {
 			if ((defence * 3) % 5 > 0)
@@ -130,29 +130,29 @@ public class DamageCalculator {
 		return new int[] { (int) minDamage, (int) maxDamage };
 	}
 
-	public void calculateMelee(Creature attacker) {
+	private void calculateMelee(Creature attacker) {
 		if (attacker.hasMeleePenalty) {
 			this.minDamage /= 2;
 			this.maxDamage /= 2;
 		}
 	}
 
-	public void calculateDoubleShooting() {
+	private void calculateDoubleShooting() {
 		this.minDamage *= 2;
 		this.maxDamage *= 2;
 	}
 
-	public void calculateHateBonus() {
+	private void calculateHateBonus() {
 		this.minDamage = this.minDamage * 3 / 2;
 		this.maxDamage = this.maxDamage * 3 / 2;
 	}
 
-	public void calculateOppositeElementalBonus() {
+	private void calculateOppositeElementalBonus() {
 		this.minDamage = this.minDamage * 2;
 		this.maxDamage = this.maxDamage * 2;
 	}
 
-	public void mindSpellImmunityPenalty(Creature defender) {
+	private void mindSpellImmunityPenalty(Creature defender) {
 		if (defender.isMindSpellImmune) {
 			this.minDamage /= 2;
 			this.maxDamage /= 2;

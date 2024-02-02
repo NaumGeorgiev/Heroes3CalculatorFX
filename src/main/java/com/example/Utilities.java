@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -65,17 +66,31 @@ public class Utilities {
                         return 0;
                 return Integer.parseInt(textField.getText());
         }
-
+        public static int getHealth(Creature creature, boolean ringOfLife, boolean ringOfVitality, boolean vileOfLifeblood, boolean elixirOfLife){
+                int health=creature.health;
+                if(elixirOfLife && !creature.isElixirImmune){
+                        return (health+4)*125/100;
+                }
+                if(ringOfLife)
+                health++;
+                if(ringOfVitality)
+                health++;
+                if(vileOfLifeblood)
+                health+=2;
+                return health;
+        }
         public static void setDamageLabel(Label label, int[] damage, int health) {
-                int averageDamage=(damage[0]+damage[1])/2;
+                int averageDamage = (damage[0] + damage[1]) / 2;
                 label.setFont(new Font(28));
-                if(damage[0]==damage[1])
-                        label.setText(averageDamage+"\n"+averageDamage/health+"+"+averageDamage%health+" HP");
-                        else
-                label.setText(damage[0] + "-" + damage[1] + " | " + averageDamage + " on average\n"
-                                + damage[0] / health + "+" + damage[0] % health + " HP - " + damage[1] / health + "+"
-                                + damage[1] % health + " HP\n" + (averageDamage/health) + "+"
-                                + averageDamage % health + " HP on average");
+                if (damage[0] == damage[1])
+                        label.setText(averageDamage + "\n" + averageDamage / health + "+" + averageDamage % health
+                                        + " HP");
+                else
+                        label.setText(damage[0] + "-" + damage[1] + " | " + averageDamage + " on average\n"
+                                        + damage[0] / health + "+" + damage[0] % health + " HP - " + damage[1] / health
+                                        + "+"
+                                        + damage[1] % health + " HP\n" + (averageDamage / health) + "+"
+                                        + averageDamage % health + " HP on average");
         }
 
         public static void setIncorrectInputLabel(Label label) {
@@ -101,20 +116,50 @@ public class Utilities {
                 return skillIcons;
 
         }
-        public static void setSpellBuffsImageView(ImageView blessImageView, ImageView curseImageView, RadioButton advancedBless, RadioButton advancedCurse,RadioButton noSpellBuff){
-                if(advancedBless.isSelected()){
+
+
+        public static void setArtifactsImageView(ImageView ringOfLifeImageView, ImageView ringOfVitalityImageView,
+                        ImageView vileOfLifebloodImageView, ImageView elixirOfLifeImageView, CheckBox ringOfLife,
+                        CheckBox ringOfVitality, CheckBox vileOfLifeblood, CheckBox elixirOfLife) {
+
+                if (elixirOfLife.isSelected() && elixirOfLifeImageView.getOpacity() == 0.5) {
+                        ringOfLife.setSelected(true);
+                        ringOfVitality.setSelected(true);
+                        vileOfLifeblood.setSelected(true);
+                        elixirOfLifeImageView.setOpacity(1);
+                } else {
+                        elixirOfLife.setSelected(false);
+                        elixirOfLifeImageView.setOpacity(0.5);
+                }
+                if (ringOfLife.isSelected())
+                        ringOfLifeImageView.setOpacity(1);
+                else
+                        ringOfLifeImageView.setOpacity(0.5);
+                if (ringOfVitality.isSelected())
+                        ringOfVitalityImageView.setOpacity(1);
+                else
+                        ringOfVitalityImageView.setOpacity(0.5);
+                if (vileOfLifeblood.isSelected())
+                        vileOfLifebloodImageView.setOpacity(1);
+                else
+                        vileOfLifebloodImageView.setOpacity(0.5);
+
+        }
+
+        public static void setSpellBuffsImageView(ImageView blessImageView, ImageView curseImageView,
+                        RadioButton advancedBless, RadioButton advancedCurse, RadioButton noSpellBuff) {
+                if (advancedBless.isSelected()) {
                         curseImageView.setOpacity(0.5);
                         blessImageView.setOpacity(1);
-                }
-                else if(advancedCurse.isSelected()){
+                } else if (advancedCurse.isSelected()) {
                         blessImageView.setOpacity(0.5);
                         curseImageView.setOpacity(1);
-                }
-                else if(noSpellBuff.isSelected()){
+                } else if (noSpellBuff.isSelected()) {
                         blessImageView.setOpacity(0.5);
                         curseImageView.setOpacity(0.5);
                 }
         }
+
         public static void setSkillImageView(ImageView skillImageView, RadioButton no, RadioButton basic,
                         RadioButton advanced, RadioButton expert, Image basicIcon, Image advancedIcon,
                         Image ExpertIcon) {
@@ -162,5 +207,5 @@ public class Utilities {
                         }
                 });
         }
-        
+
 }

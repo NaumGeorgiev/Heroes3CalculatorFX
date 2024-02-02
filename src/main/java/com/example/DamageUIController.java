@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -18,12 +19,15 @@ public class DamageUIController {
         private static Creature[] creatures = Creature.createAll();
         private Image[] skillsIcons = Utilities.getSkillIcons();
         @FXML
-        private ImageView archeryImageView, armorerImageView, offenseImageView, blessImageView, curseImageView;
+        private ImageView archeryImageView, armorerImageView, offenseImageView, blessImageView, curseImageView,
+                        ringOfLifeImageView, ringOfVitalityImageView, vileOfLifebloodImageView, elixirOfLifImageView;
         @FXML
         private RadioButton noOffense, basicOffense, advancedOffense, expertOffense, noArmorer, basicArmorer,
-                        advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery, advancedBless, advancedCurse, noSpellBuffs;
+                        advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery,
+                        advancedBless, advancedCurse, noSpellBuffs;
         @FXML
-        private TextField offenseField, armorerField, archeryField, attackField, defenceField, creatureCountField, joustingField;
+        private TextField offenseField, armorerField, archeryField, attackField, defenceField, creatureCountField,
+                        joustingField;
         @FXML
         private ComboBox<String> attackerComboBox, defenderComboBox;
         @FXML
@@ -32,6 +36,8 @@ public class DamageUIController {
         private ToggleButton shotsButton, meleeButton;
         @FXML
         private Label label;
+        @FXML
+        CheckBox ringOfLife, ringOfVitality, vileOfLifeblood, elixirOfLife;
 
         public void initialize() {
 
@@ -53,10 +59,16 @@ public class DamageUIController {
                 Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
                 Utilities.setImageViewDefault(blessImageView, new Image("Bless.png"));
                 Utilities.setImageViewDefault(curseImageView, new Image("Curse.png"));
+                Utilities.setImageViewDefault(ringOfLifeImageView, new Image("ringOfLife.gif"));
+                Utilities.setImageViewDefault(ringOfVitalityImageView, new Image("ringOfVitality.gif"));
+                Utilities.setImageViewDefault(vileOfLifebloodImageView, new Image("vileOfLifeblood.gif"));
+                Utilities.setImageViewDefault(elixirOfLifImageView, new Image("elixirOfLife.gif"));
+
                 meleeButton.setVisible(false);
                 shotsButton.setVisible(false);
         }
-        public void clear(){
+
+        public void clear() {
                 attackField.setText("");
                 defenceField.setText("");
                 offenseField.setText("");
@@ -77,9 +89,15 @@ public class DamageUIController {
                 armorerImageView.setOpacity(0.5);
                 archeryImageView.setOpacity(0.5);
                 noSpellBuffs.setSelected(true);
+                elixirOfLife.setSelected(false);
+                ringOfLife.setSelected(false);
+                ringOfVitality.setSelected(false);
+                vileOfLifeblood.setSelected(false);
+                elixirOfLifImageView.setOpacity(0.5);
+                ringOfLifeImageView.setOpacity(0.5);
+                ringOfVitalityImageView.setOpacity(0.5);
+                vileOfLifebloodImageView.setOpacity(0.5);
         }
-
-   
 
         @FXML
         public void clearField(KeyEvent keyEvent) {
@@ -98,9 +116,17 @@ public class DamageUIController {
                                 creatureCountField.clear();
                 }
         }
+
         @FXML
-        public void setSpellBuffIcon(){
-                Utilities.setSpellBuffsImageView(blessImageView, curseImageView, advancedBless, advancedCurse, noSpellBuffs);
+        public void setSpellBuffIcon() {
+                Utilities.setSpellBuffsImageView(blessImageView, curseImageView, advancedBless, advancedCurse,
+                                noSpellBuffs);
+        }
+
+        @FXML
+        public void setArtifactsIcons() {
+                Utilities.setArtifactsImageView(ringOfLifeImageView, ringOfVitalityImageView, vileOfLifebloodImageView,
+                                elixirOfLifImageView, ringOfLife, ringOfVitality, vileOfLifeblood, elixirOfLife);
         }
 
         @FXML
@@ -128,16 +154,16 @@ public class DamageUIController {
                         shotsButton.setSelected(false);
                         joustingField.setText("");
                         joustingField.setVisible(false);
-                        Creature creature=Creature.getCreatureByName(creatures,
-                        attackerComboBox.getSelectionModel().getSelectedItem());
-                        if (creature!=null && creature.isRanged) {
+                        Creature creature = Creature.getCreatureByName(creatures,
+                                        attackerComboBox.getSelectionModel().getSelectedItem());
+                        if (creature != null && creature.isRanged) {
                                 meleeButton.setVisible(true);
                                 shotsButton.setVisible(true);
                         } else {
                                 meleeButton.setVisible(false);
                                 shotsButton.setVisible(false);
                         }
-                        if(creature.name.equals("Champion") || creature.name.equals("Cavalier"))
+                        if (creature.name.equals("Champion") || creature.name.equals("Cavalier"))
                                 joustingField.setVisible(true);
                 }
         }
@@ -151,9 +177,10 @@ public class DamageUIController {
         public void setShotSumNotSelected() {
                 shotsButton.setSelected(false);
         }
-        @FXML 
-        public void swap(){
-               
+
+        @FXML
+        public void swap() {
+
                 String attacker = attackerComboBox.getSelectionModel().getSelectedItem();
                 String defender = defenderComboBox.getSelectionModel().getSelectedItem();
                 clear();
@@ -163,17 +190,17 @@ public class DamageUIController {
 
         @FXML
         public void displayDamage() {
-                String attackerName=attackerComboBox.getValue();
-                String defenderName=defenderComboBox.getValue();
-                if(attackerName==null)
-                attackerName="";
-                if(defenderName==null)
-                defenderName="";
+                String attackerName = attackerComboBox.getValue();
+                String defenderName = defenderComboBox.getValue();
+                if (attackerName == null)
+                        attackerName = "";
+                if (defenderName == null)
+                        defenderName = "";
                 Creature defender = Creature.getCreatureByName(creatures, defenderName);
                 Creature attacker = Creature.getCreatureByName(creatures, attackerName);
-                if(defender==null || attacker==null || creatureCountField.getText().isEmpty())
-                Utilities.setIncorrectInputLabel(label);
-                else{
+                if (defender == null || attacker == null || creatureCountField.getText().isEmpty())
+                        Utilities.setIncorrectInputLabel(label);
+                else {
                         double minDamage = attacker.minDamage;
                         double maxDamage = attacker.maxDamage;
                         boolean isRanged = attacker.isRanged;
@@ -190,19 +217,22 @@ public class DamageUIController {
                         int archeryHeroLevel = Utilities.getTextFieldNumberValue(archeryField);
                         int attack = Utilities.getTextFieldNumberValue(attackField) + attacker.attack;
                         int defence = Utilities.getTextFieldNumberValue(defenceField) + defender.defence;
-                        int joustingSteps=Utilities.getTextFieldNumberValue(joustingField);
+                        int joustingSteps = Utilities.getTextFieldNumberValue(joustingField);
                         int creatureCount = Utilities.getTextFieldNumberValue(creatureCountField);
-                        boolean isAdvancedBlessed=advancedBless.isSelected();
-                        boolean isAdvancedCursed=advancedCurse.isSelected();
+                        boolean isAdvancedBlessed = advancedBless.isSelected();
+                        boolean isAdvancedCursed = advancedCurse.isSelected();
 
                         DamageCalculator damageCalculator = new DamageCalculator(attacker.name, defender.name, attack,
                                         defence,
                                         armorer, offence, archery, offenseHeroLevel, archeryHeroLevel, armorerHeroLevel,
                                         isRanged, minDamage, maxDamage, creatureCount);
-                        int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected(), isAdvancedBlessed, isAdvancedCursed, joustingSteps);
-                        Utilities.setDamageLabel(label, damage, defender.health);
+                        int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected(),
+                                        isAdvancedBlessed, isAdvancedCursed, joustingSteps);
+                        int health = Utilities.getHealth(defender, ringOfLife.isSelected(), ringOfVitality.isSelected(),
+                                        vileOfLifeblood.isSelected(), elixirOfLife.isSelected());
+                        Utilities.setDamageLabel(label, damage, health);
 
                 }
-                }
-
         }
+
+}
