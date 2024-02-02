@@ -149,7 +149,8 @@ public class DamageUIController {
 
         @FXML
         public void setMeleeShotSumJoustingVisibility() {
-                if (attackerComboBox.getSelectionModel().getSelectedItem() != null) {
+                System.out.println(attackerComboBox.getSelectionModel().getSelectedItem());
+                if (!attackerComboBox.getSelectionModel().getSelectedItem().equals("")) {
                         meleeButton.setSelected(false);
                         shotsButton.setSelected(false);
                         joustingField.setText("");
