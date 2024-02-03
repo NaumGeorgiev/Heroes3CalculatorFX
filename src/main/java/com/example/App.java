@@ -14,6 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        stage.setResizable(false);
         scene = new Scene(loadFXML("damageUI"));
         stage.setScene(scene);
         stage.show();

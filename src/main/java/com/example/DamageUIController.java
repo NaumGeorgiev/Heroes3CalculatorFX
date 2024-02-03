@@ -1,7 +1,5 @@
 package com.example;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -52,8 +50,9 @@ public class DamageUIController {
                 Utilities.addFilter(attackerComboBox, creatures);
                 Utilities.addFilter(defenderComboBox, creatures);
 
-                // attackerComboBox.getSelectionModel().select("Angel");
-                // defenderComboBox.getSelectionModel().select("Angel");
+                attackerComboBox.setValue("Zealot");
+                defenderComboBox.setValue("Zealot");
+                creatureCountField.setText("10");
                 Utilities.setImageViewDefault(offenseImageView, skillsIcons[0]);
                 Utilities.setImageViewDefault(archeryImageView, skillsIcons[3]);
                 Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
@@ -97,6 +96,7 @@ public class DamageUIController {
                 ringOfLifeImageView.setOpacity(0.5);
                 ringOfVitalityImageView.setOpacity(0.5);
                 vileOfLifebloodImageView.setOpacity(0.5);
+                label.setText("");
         }
 
         @FXML
@@ -122,7 +122,6 @@ public class DamageUIController {
                 Utilities.setSpellBuffsImageView(blessImageView, curseImageView, advancedBless, advancedCurse,
                                 noSpellBuffs);
         }
-
         @FXML
         public void setArtifactsIcons() {
                 Utilities.setArtifactsImageView(ringOfLifeImageView, ringOfVitalityImageView, vileOfLifebloodImageView,
@@ -146,11 +145,13 @@ public class DamageUIController {
                 Utilities.setSkillImageView(offenseImageView, noOffense, basicOffense, advancedOffense, expertOffense,
                                 skillsIcons[0], skillsIcons[1], skillsIcons[2]);
         }
+        @FXML
+        public void literallyNothing(){
 
+        }
         @FXML
         public void setMeleeShotSumJoustingVisibility() {
-                System.out.println(attackerComboBox.getSelectionModel().getSelectedItem());
-                if (!attackerComboBox.getSelectionModel().getSelectedItem().equals("")) {
+                if (attackerComboBox.getSelectionModel().getSelectedItem()!=null && !attackerComboBox.getSelectionModel().getSelectedItem().equals("")) {
                         meleeButton.setSelected(false);
                         shotsButton.setSelected(false);
                         joustingField.setText("");

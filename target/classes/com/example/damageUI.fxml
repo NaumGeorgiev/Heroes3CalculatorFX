@@ -87,9 +87,9 @@
          <font>
             <Font size="14.0" />
          </font></RadioButton>
-      <TextField fx:id="offenseField" focusTraversable="false" layoutX="389.0" layoutY="10.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
-      <TextField fx:id="armorerField" focusTraversable="false" layoutX="389.0" layoutY="44.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
-      <TextField fx:id="archeryField" focusTraversable="false" layoutX="389.0" layoutY="77.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="offenseField" layoutX="389.0" layoutY="10.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="armorerField" layoutX="389.0" layoutY="44.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="archeryField" layoutX="389.0" layoutY="77.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
       <Label focusTraversable="false" layoutX="14.0" layoutY="125.0" prefHeight="17.0" prefWidth="157.0" text="Hero's attack skill">
          <font>
             <Font size="14.0" />
@@ -104,7 +104,7 @@
       <TextField fx:id="defenceField" layoutX="290.0" layoutY="154.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
       <ComboBox fx:id="attackerComboBox" editable="true" layoutX="14.0" layoutY="196.0" onAction="#setMeleeShotSumJoustingVisibility" prefHeight="25.0" prefWidth="141.0" />
       <TextField fx:id="creatureCountField" layoutX="154.0" layoutY="196.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
-      <ComboBox fx:id="defenderComboBox" editable="true" layoutX="290.0" layoutY="196.0" prefHeight="25.0" prefWidth="141.0" />
+      <ComboBox fx:id="defenderComboBox" editable="true" layoutX="290.0" layoutY="196.0" onAction="#literallyNothing" prefHeight="25.0" prefWidth="141.0" />
       <Button fx:id="swapButton" focusTraversable="false" layoutX="205.0" layoutY="196.0" mnemonicParsing="false" onAction="#swap" prefHeight="25.0" prefWidth="76.0" text="⮀" />
       <Button fx:id="commitButton" layoutX="21.0" layoutY="267.0" mnemonicParsing="false" onAction="#displayDamage" prefHeight="68.0" prefWidth="415.0" text="Submit" />
       <Label fx:id="label" focusTraversable="false" layoutX="21.0" layoutY="352.0" prefHeight="120.0" prefWidth="415.0" />
@@ -112,11 +112,11 @@
          <image>
             <Image url="@../../../java/BasicOffense.png" />
          </image></ImageView>
-      <ImageView fx:id="archeryImageView" fitHeight="99.0" fitWidth="98.0" layoutX="545.0" layoutY="8.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="archeryImageView" fitHeight="99.0" fitWidth="98.0" layoutX="643.0" layoutY="8.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../java/BasicArchery.png" />
          </image></ImageView>
-      <ImageView fx:id="armorerImageView" fitHeight="99.0" fitWidth="98.0" layoutX="643.0" layoutY="8.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="armorerImageView" fitHeight="99.0" fitWidth="98.0" layoutX="545.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../java/BasicArmorer.png" />
          </image></ImageView>
