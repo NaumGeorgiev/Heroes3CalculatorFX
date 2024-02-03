@@ -21,7 +21,7 @@ public class DamageCalculator {
 			int armorerHeroLevel, boolean isRanged, double minDamage, double maxDamage,
 			int creatureNumber) {
 		this.attackerName = attackerName;
-		this.defenderName=defenderName;
+		this.defenderName = defenderName;
 		this.attack = attack;
 		this.defence = defence;
 		this.armorer = armorer;
@@ -55,78 +55,82 @@ public class DamageCalculator {
 		else if (defenderName.equals("NixWarrior"))
 			attack = attack * 4 / 10;
 
-		double attackDefenceDifferenceBonus = 1;
+		double attackOverDefence = 0;
+		double defenceOverAttack = 0;
 		if (attack >= defence) {
 			if (attack - defence >= 60)
-				attackDefenceDifferenceBonus += 3;
+				attackOverDefence = 3;
 			else
-				attackDefenceDifferenceBonus += (attack - defence) * 0.05;
+				attackOverDefence = (attack - defence) * 0.05;
 		} else {
 			if (defence - attack >= 28)
-				attackDefenceDifferenceBonus -= 0.7;
+				defenceOverAttack = 0.7;
 			else
-				attackDefenceDifferenceBonus -= (defence - attack) * 0.025;
+				defenceOverAttack = (defence - attack) * 0.025;
 		}
 
-		double offenceBonus = 1;
-		double archeryBonus = 1;
+		double offenceBonus = 0;
+		double archeryBonus = 0;
 		if (isRanged == false) {
 			switch (offence) {
 				case 0:
 					break;
 				case 1:
-					offenceBonus = 1.1;
+					offenceBonus = 0.1;
 					break;
 				case 2:
-					offenceBonus = 1.2;
+					offenceBonus = 0.2;
 					break;
 				case 3:
-					offenceBonus = 1.3;
+					offenceBonus = 0.3;
 			}
-			offenceBonus += offenseHeroLevel * (offenceBonus - 1) * 0.05;
+			// offenceBonus += offenseHeroLevel * (offenceBonus - 1) * 0.05;
 		} else {
 			switch (archery) {
 				case 0:
 					break;
 				case 1:
-					archeryBonus = 1.1;
+					archeryBonus = 0.1;
 					break;
 				case 2:
-					archeryBonus = 1.25;
+					archeryBonus = 0.25;
 					break;
 				case 3:
-					archeryBonus = 1.5;
+					archeryBonus = 0.5;
 			}
-			archeryBonus += archeryHeroLevel * (archeryBonus - 1) * 0.05;
+			// archeryBonus += archeryHeroLevel * (archeryBonus - 1) * 0.05;
 		}
 
-		double armorerBonus = 1;
+		double armorerBonus = 0;
 		switch (armorer) {
 			case 0:
 				break;
 			case 1:
-				armorerBonus = 0.95;
+				armorerBonus = 0.05;
 				break;
 			case 2:
-				armorerBonus = 0.9;
+				armorerBonus = 0.1;
 				break;
 			case 3:
-				armorerBonus = 0.85;
+				armorerBonus = 0.15;
 		}
-		armorerBonus -= armorerHeroLevel * (1 - armorerBonus) * 0.05;
-
-		minDamage = (minDamage * attackDefenceDifferenceBonus * offenceBonus *
-				archeryBonus * armorerBonus
-				* creatureNumber);
-		maxDamage = (maxDamage * attackDefenceDifferenceBonus * offenceBonus *
-				archeryBonus * armorerBonus
-				* creatureNumber);
+		// armorerBonus -= armorerHeroLevel * (1 - armorerBonus) * 0.05;
+		double damageMultiplier = (1 + attackOverDefence + archeryBonus + offenceBonus
+				+ 0.05 * archeryHeroLevel * archeryBonus + 0.05 * offenseHeroLevel * offenceBonus)
+				* (1 - defenceOverAttack) * (1 - armorerBonus - 0.05 * armorerHeroLevel * armorerBonus)
+				* creatureNumber;
+		minDamage *= damageMultiplier;
+		maxDamage *= damageMultiplier;
+		// minDamage = (minDamage * attackDefenceDifferenceBonus * offenceBonus *
+		// archeryBonus * armorerBonus * creatureNumber);
+		// maxDamage = (maxDamage * attackDefenceDifferenceBonus * offenceBonus *
+		// archeryBonus * armorerBonus * creatureNumber);
 		if (minDamage == 0)
 			minDamage = 1;
 		if (maxDamage == 0)
-		maxDamage = 1;
-		if(allShots)
-		return new int[] {(int) minDamage*shotCount, (int) maxDamage*shotCount};
+			maxDamage = 1;
+		if (allShots)
+			return new int[] { (int) minDamage * shotCount, (int) maxDamage * shotCount };
 		return new int[] { (int) minDamage, (int) maxDamage };
 	}
 
@@ -159,28 +163,31 @@ public class DamageCalculator {
 		}
 	}
 
-	private void calculateBless(Creature attacker){
-		this.maxDamage+=1;
-		this.minDamage=maxDamage;
-	}
-	private void calculateCurse(Creature attacker){
-		this.minDamage-=1;
-		this.maxDamage=minDamage;
-	}
-	private void calculateJoustingBonus(Creature attacker, Creature defender, int joustingSteps){
-		if(defender.name.equals("Pikeman") || defender.name.equals("Halberdier"))
-		return;
-		this.minDamage*=0.05*joustingSteps+1;
-		this.maxDamage*=0.05*joustingSteps+1;
+	private void calculateBless(Creature attacker) {
+		this.maxDamage += 1;
+		this.minDamage = maxDamage;
 	}
 
-	public int[] calculate(Creature attacker, Creature defender, boolean allShots, boolean advancedBless, boolean advancedCurse, int joustingSteps) {
+	private void calculateCurse(Creature attacker) {
+		this.minDamage -= 1;
+		this.maxDamage = minDamage;
+	}
+
+	private void calculateJoustingBonus(Creature attacker, Creature defender, int joustingSteps) {
+		if (defender.name.equals("Pikeman") || defender.name.equals("Halberdier"))
+			return;
+		this.minDamage *= 0.05 * joustingSteps + 1;
+		this.maxDamage *= 0.05 * joustingSteps + 1;
+	}
+
+	public int[] calculate(Creature attacker, Creature defender, boolean allShots, boolean advancedBless,
+			boolean advancedCurse, int joustingSteps) {
 		calculateJoustingBonus(attacker, defender, joustingSteps);
-		if(advancedBless)
-		calculateBless(attacker);
-		else if(advancedCurse)
-		calculateCurse(attacker);
-		if (this.isRanged==false)
+		if (advancedBless)
+			calculateBless(attacker);
+		else if (advancedCurse)
+			calculateCurse(attacker);
+		if (this.isRanged == false)
 			calculateMelee(attacker);
 		else if (attacker.isDoubleShooting)
 			calculateDoubleShooting();
