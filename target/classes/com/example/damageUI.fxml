@@ -176,5 +176,20 @@
          </image>
       </ImageView>
       <CheckBox fx:id="elixirOfLife" focusTraversable="false" layoutX="712.0" layoutY="470.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="106.0" text="Elixir of Life" />
+      <ImageView fx:id="bowImageView" fitHeight="33.0" fitWidth="38.0" layoutX="730.0" layoutY="8.0" onMouseClicked="#setBowOpacity" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Bow.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="bowstringImageView" fitHeight="33.0" fitWidth="38.0" layoutX="730.0" layoutY="41.0" onMouseClicked="#setBowstringOpacity" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Bowstring.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="angelFeatherImageView" fitHeight="33.0" fitWidth="38.0" layoutX="730.0" layoutY="74.0" onMouseClicked="#setAngelFeatherOpacity" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/AngelFeather.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

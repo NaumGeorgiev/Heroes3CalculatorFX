@@ -31,9 +31,9 @@ public class Utilities {
                 return 69;
         }
 
-        public static void setImageViewDefault(ImageView skillImageView, Image basicSkillIcon) {
-                skillImageView.setImage(basicSkillIcon);
-                skillImageView.setOpacity(0.5);
+        public static void setImageViewDefault(ImageView imageView, Image image) {
+                imageView.setImage(image);
+                imageView.setOpacity(0.5);
         }
 
         public static void setToNumeric(TextField textField) {

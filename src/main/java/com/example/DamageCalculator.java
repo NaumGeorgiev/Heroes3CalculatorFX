@@ -36,7 +36,7 @@ public class DamageCalculator {
 		this.creatureNumber = creatureNumber;
 	}
 
-	private int[] fianlCalculate(boolean allShots, int shotCount) {
+	private int[] fianlCalculate(boolean allShots, int shotCount, double archeryArtiesBonus) {
 
 		if (attackerName.equals("Behemoth")) {
 			if ((defence * 3) % 5 > 0)
@@ -90,13 +90,13 @@ public class DamageCalculator {
 				case 0:
 					break;
 				case 1:
-					archeryBonus = 0.1;
+					archeryBonus = 0.1+archeryArtiesBonus;
 					break;
 				case 2:
-					archeryBonus = 0.25;
+					archeryBonus = 0.25+archeryArtiesBonus;
 					break;
 				case 3:
-					archeryBonus = 0.5;
+					archeryBonus = 0.5+archeryArtiesBonus;
 			}
 			// archeryBonus += archeryHeroLevel * (archeryBonus - 1) * 0.05;
 		}
@@ -114,6 +114,7 @@ public class DamageCalculator {
 			case 3:
 				armorerBonus = 0.15;
 		}
+		
 		// armorerBonus -= armorerHeroLevel * (1 - armorerBonus) * 0.05;
 		double damageMultiplier = (1 + attackOverDefence + archeryBonus + offenceBonus
 				+ 0.05 * archeryHeroLevel * archeryBonus + 0.05 * offenseHeroLevel * offenceBonus)
@@ -179,9 +180,19 @@ public class DamageCalculator {
 		this.minDamage *= 0.05 * joustingSteps + 1;
 		this.maxDamage *= 0.05 * joustingSteps + 1;
 	}
+	private static double getArcheryAtriesBonus(boolean bow, boolean bowstring, boolean angelFeather){
+		double toBeReturned=0;
+		if(bow)
+		toBeReturned+=0.05;
+		if(bowstring)
+		toBeReturned+=0.1;
+		if(angelFeather)
+		toBeReturned+=0.15;
+		return toBeReturned;
+	}
 
 	public int[] calculate(Creature attacker, Creature defender, boolean allShots, boolean advancedBless,
-			boolean advancedCurse, int joustingSteps) {
+			boolean advancedCurse, int joustingSteps,boolean bow, boolean bowstring, boolean angelFeather) {
 		calculateJoustingBonus(attacker, defender, joustingSteps);
 		if (advancedBless)
 			calculateBless(attacker);
@@ -198,6 +209,6 @@ public class DamageCalculator {
 		if (attacker.name.equals("PsychicElemental") ||
 				attacker.name.equals("MagicElemental"))
 			mindSpellImmunityPenalty(defender);
-		return this.fianlCalculate(allShots, attacker.shotCount);
+		return this.fianlCalculate(allShots, attacker.shotCount, getArcheryAtriesBonus(bow, bowstring, angelFeather));
 	}
 }

@@ -18,7 +18,8 @@ public class DamageUIController {
         private Image[] skillsIcons = Utilities.getSkillIcons();
         @FXML
         private ImageView archeryImageView, armorerImageView, offenseImageView, blessImageView, curseImageView,
-                        ringOfLifeImageView, ringOfVitalityImageView, vileOfLifebloodImageView, elixirOfLifImageView;
+                        ringOfLifeImageView, ringOfVitalityImageView, vileOfLifebloodImageView, elixirOfLifImageView,
+                        bowImageView, angelFeatherImageView, bowstringImageView;
         @FXML
         private RadioButton noOffense, basicOffense, advancedOffense, expertOffense, noArmorer, basicArmorer,
                         advancedArmorer, expertArmorer, noArchery, basicArchery, advancedArchery, expertArchery,
@@ -62,6 +63,9 @@ public class DamageUIController {
                 Utilities.setImageViewDefault(ringOfVitalityImageView, new Image("ringOfVitality.gif"));
                 Utilities.setImageViewDefault(vileOfLifebloodImageView, new Image("vileOfLifeblood.gif"));
                 Utilities.setImageViewDefault(elixirOfLifImageView, new Image("elixirOfLife.gif"));
+                Utilities.setImageViewDefault(bowImageView, new Image("Bow.gif"));
+                Utilities.setImageViewDefault(bowstringImageView, new Image("Bowstring.gif"));
+                Utilities.setImageViewDefault(angelFeatherImageView, new Image("AngelFeather.gif"));
 
                 meleeButton.setVisible(false);
                 shotsButton.setVisible(false);
@@ -97,6 +101,10 @@ public class DamageUIController {
                 ringOfVitalityImageView.setOpacity(0.5);
                 vileOfLifebloodImageView.setOpacity(0.5);
                 label.setText("");
+
+                bowImageView.setOpacity(0.5);
+                bowstringImageView.setOpacity(0.5);
+                angelFeatherImageView.setOpacity(0.5);
         }
 
         @FXML
@@ -118,10 +126,35 @@ public class DamageUIController {
         }
 
         @FXML
+        public void setBowOpacity() {
+                if (bowImageView.getOpacity() == 0.5)
+                        bowImageView.setOpacity(1);
+                else
+                        bowImageView.setOpacity(0.5);
+        }
+
+        @FXML
+        public void setBowstringOpacity() {
+                if (bowstringImageView.getOpacity() == 0.5)
+                        bowstringImageView.setOpacity(1);
+                else
+                        bowstringImageView.setOpacity(0.5);
+        }
+
+        @FXML
+        public void setAngelFeatherOpacity() {
+                if (angelFeatherImageView.getOpacity() == 0.5)
+                        angelFeatherImageView.setOpacity(1);
+                else
+                        angelFeatherImageView.setOpacity(0.5);
+        }
+
+        @FXML
         public void setSpellBuffIcon() {
                 Utilities.setSpellBuffsImageView(blessImageView, curseImageView, advancedBless, advancedCurse,
                                 noSpellBuffs);
         }
+
         @FXML
         public void setArtifactsIcons() {
                 Utilities.setArtifactsImageView(ringOfLifeImageView, ringOfVitalityImageView, vileOfLifebloodImageView,
@@ -145,13 +178,16 @@ public class DamageUIController {
                 Utilities.setSkillImageView(offenseImageView, noOffense, basicOffense, advancedOffense, expertOffense,
                                 skillsIcons[0], skillsIcons[1], skillsIcons[2]);
         }
+
         @FXML
-        public void literallyNothing(){
+        public void literallyNothing() {
 
         }
+
         @FXML
         public void setMeleeShotSumJoustingVisibility() {
-                if (attackerComboBox.getSelectionModel().getSelectedItem()!=null && !attackerComboBox.getSelectionModel().getSelectedItem().equals("")) {
+                if (attackerComboBox.getSelectionModel().getSelectedItem() != null
+                                && !attackerComboBox.getSelectionModel().getSelectedItem().equals("")) {
                         meleeButton.setSelected(false);
                         shotsButton.setSelected(false);
                         joustingField.setText("");
@@ -223,13 +259,14 @@ public class DamageUIController {
                         int creatureCount = Utilities.getTextFieldNumberValue(creatureCountField);
                         boolean isAdvancedBlessed = advancedBless.isSelected();
                         boolean isAdvancedCursed = advancedCurse.isSelected();
-
                         DamageCalculator damageCalculator = new DamageCalculator(attacker.name, defender.name, attack,
                                         defence,
                                         armorer, offence, archery, offenseHeroLevel, archeryHeroLevel, armorerHeroLevel,
                                         isRanged, minDamage, maxDamage, creatureCount);
                         int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected(),
-                                        isAdvancedBlessed, isAdvancedCursed, joustingSteps);
+                                        isAdvancedBlessed, isAdvancedCursed, joustingSteps,
+                                        bowImageView.getOpacity() == 1.0, bowstringImageView.getOpacity() == 1.0,
+                                        angelFeatherImageView.getOpacity() == 1.0);
                         int health = Utilities.getHealth(defender, ringOfLife.isSelected(), ringOfVitality.isSelected(),
                                         vileOfLifeblood.isSelected(), elixirOfLife.isSelected());
                         Utilities.setDamageLabel(label, damage, health);
