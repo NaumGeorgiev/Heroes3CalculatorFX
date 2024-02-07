@@ -188,6 +188,7 @@ public class Utilities {
                         public void handle(KeyEvent event) {
                                 comboBox.show();
                                 if (event.getCode() == KeyCode.ESCAPE) {
+                                        comboBox.setValue("");
                                         comboBox.getEditor().setText("");
                                         comboBox.hide();
                                         return;

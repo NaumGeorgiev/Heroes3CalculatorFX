@@ -59,10 +59,10 @@ public class DamageUIController {
                 Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
                 Utilities.setImageViewDefault(blessImageView, new Image("Bless.png"));
                 Utilities.setImageViewDefault(curseImageView, new Image("Curse.png"));
-                Utilities.setImageViewDefault(ringOfLifeImageView, new Image("ringOfLife.gif"));
-                Utilities.setImageViewDefault(ringOfVitalityImageView, new Image("ringOfVitality.gif"));
-                Utilities.setImageViewDefault(vileOfLifebloodImageView, new Image("vileOfLifeblood.gif"));
-                Utilities.setImageViewDefault(elixirOfLifImageView, new Image("elixirOfLife.gif"));
+                Utilities.setImageViewDefault(ringOfLifeImageView, new Image("RingOfLife.gif"));
+                Utilities.setImageViewDefault(ringOfVitalityImageView, new Image("RingOfVitality.gif"));
+                Utilities.setImageViewDefault(vileOfLifebloodImageView, new Image("VileOfLifeblood.gif"));
+                Utilities.setImageViewDefault(elixirOfLifImageView, new Image("ElixirOfLife.gif"));
                 Utilities.setImageViewDefault(bowImageView, new Image("Bow.gif"));
                 Utilities.setImageViewDefault(bowstringImageView, new Image("Bowstring.gif"));
                 Utilities.setImageViewDefault(angelFeatherImageView, new Image("AngelFeather.gif"));
