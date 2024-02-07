@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.DamageUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.DamageUIController">
    <children>
       <RadioButton fx:id="expertOffense" focusTraversable="false" layoutX="302.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" text="Expert">
          <font>
@@ -87,9 +87,9 @@
          <font>
             <Font size="14.0" />
          </font></RadioButton>
-      <TextField fx:id="offenseField" layoutX="389.0" layoutY="10.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
-      <TextField fx:id="armorerField" layoutX="389.0" layoutY="44.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
-      <TextField fx:id="archeryField" layoutX="389.0" layoutY="77.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="offenseField" focusTraversable="false" layoutX="389.0" layoutY="10.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="armorerField" focusTraversable="false" layoutX="389.0" layoutY="44.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="archeryField" focusTraversable="false" layoutX="389.0" layoutY="77.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
       <Label focusTraversable="false" layoutX="14.0" layoutY="125.0" prefHeight="17.0" prefWidth="157.0" text="Hero's attack skill">
          <font>
             <Font size="14.0" />
