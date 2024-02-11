@@ -123,7 +123,7 @@
       <ToggleButton fx:id="meleeButton" focusTraversable="false" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" onAction="#setShotSumNotSelected" prefHeight="24.0" prefWidth="76.0" text="Melee" />
       <ToggleButton fx:id="shotsButton" focusTraversable="false" layoutX="90.0" layoutY="221.0" mnemonicParsing="false" onAction="#setMeleeNotSelected" prefHeight="24.0" prefWidth="106.0" text="ShotSum" />
       <Button fx:id="clearButton" focusTraversable="false" layoutX="290.0" layoutY="221.0" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="141.0" text="Clear" />
-      <TextField fx:id="joustingField" layoutX="15.0" layoutY="221.0" prefHeight="25.0" prefWidth="141.0" promptText="step count" />
+      <TextField fx:id="joustingField" focusTraversable="false" layoutX="15.0" layoutY="221.0" prefHeight="25.0" prefWidth="141.0" promptText="step count" />
       <CheckBox fx:id="ringOfVitality" focusTraversable="false" layoutX="513.0" layoutY="416.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="106.0" text="Ring of Vitality" />
       <CheckBox fx:id="vileOfLifeblood" focusTraversable="false" layoutX="513.0" layoutY="524.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="112.0" text="Vial of Lifeblood" />
       <CheckBox fx:id="ringOfLife" focusTraversable="false" layoutX="513.0" layoutY="470.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="106.0" text="Ring of Life" />
