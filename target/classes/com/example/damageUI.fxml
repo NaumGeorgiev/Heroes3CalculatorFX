@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.DamageUIController">
+   <children>
+      <RadioButton fx:id="expertOffense" focusTraversable="false" layoutX="302.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" text="Expert">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="offenseGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="98.0" text="Offense:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <RadioButton fx:id="basicOffense" focusTraversable="false" layoutX="134.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" text="Basic" toggleGroup="$offenseGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="noOffense" focusTraversable="false" layoutX="82.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" selected="true" text="No" toggleGroup="$offenseGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="advancedOffense" focusTraversable="false" layoutX="203.0" layoutY="14.0" mnemonicParsing="false" onAction="#setOffenseSkillIcon" text="Advanced" toggleGroup="$offenseGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="expertArmorer" focusTraversable="false" layoutX="302.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" text="Expert">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="armorerGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <Label layoutX="14.0" layoutY="47.0" prefHeight="16.0" prefWidth="98.0" text="Armorer:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <RadioButton fx:id="basicArmorer" focusTraversable="false" layoutX="134.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" text="Basic" toggleGroup="$armorerGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="noArmorer" focusTraversable="false" layoutX="82.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" selected="true" text="No" toggleGroup="$armorerGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="advancedArmorer" focusTraversable="false" layoutX="203.0" layoutY="47.0" mnemonicParsing="false" onAction="#setArmorerSkillIcon" text="Advanced" toggleGroup="$armorerGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="expertArchery" focusTraversable="false" layoutX="302.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" text="Expert">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="archeryGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <Label layoutX="14.0" layoutY="80.0" prefHeight="16.0" prefWidth="98.0" text="Archery:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <RadioButton fx:id="basicArchery" focusTraversable="false" layoutX="134.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" text="Basic" toggleGroup="$archeryGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="noArchery" focusTraversable="false" layoutX="82.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" selected="true" text="No" toggleGroup="$archeryGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="advancedArchery" focusTraversable="false" layoutX="203.0" layoutY="80.0" mnemonicParsing="false" onAction="#setArcherySkillIcon" text="Advanced" toggleGroup="$archeryGroup">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <TextField fx:id="offenseField" focusTraversable="false" layoutX="389.0" layoutY="10.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="armorerField" focusTraversable="false" layoutX="389.0" layoutY="44.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <TextField fx:id="archeryField" focusTraversable="false" layoutX="389.0" layoutY="77.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <Label focusTraversable="false" layoutX="14.0" layoutY="125.0" prefHeight="17.0" prefWidth="157.0" text="Hero's attack skill">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="attackField" layoutX="14.0" layoutY="155.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <Label focusTraversable="false" layoutX="290.0" layoutY="125.0" prefHeight="17.0" prefWidth="157.0" text="Hero's defence skill">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="defenceField" layoutX="290.0" layoutY="154.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <ComboBox fx:id="attackerComboBox" editable="true" layoutX="14.0" layoutY="196.0" onAction="#setMeleeShotSumJoustingVisibility" prefHeight="25.0" prefWidth="141.0" />
+      <TextField fx:id="creatureCountField" layoutX="154.0" layoutY="196.0" onKeyPressed="#clearField" prefHeight="24.0" prefWidth="42.0" />
+      <ComboBox fx:id="defenderComboBox" editable="true" layoutX="290.0" layoutY="196.0" onAction="#literallyNothing" prefHeight="25.0" prefWidth="141.0" />
+      <Button fx:id="swapButton" focusTraversable="false" layoutX="205.0" layoutY="196.0" mnemonicParsing="false" onAction="#swap" prefHeight="25.0" prefWidth="76.0" text="⮀" />
+      <Button fx:id="commitButton" layoutX="21.0" layoutY="267.0" mnemonicParsing="false" onAction="#displayDamage" prefHeight="68.0" prefWidth="415.0" text="Submit" />
+      <Label fx:id="label" focusTraversable="false" layoutX="21.0" layoutY="352.0" prefHeight="120.0" prefWidth="415.0" />
+      <ImageView fx:id="offenseImageView" fitHeight="99.0" fitWidth="98.0" layoutX="447.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/BasicOffense.png" />
+         </image></ImageView>
+      <ImageView fx:id="archeryImageView" fitHeight="99.0" fitWidth="98.0" layoutX="643.0" layoutY="8.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/BasicArchery.png" />
+         </image></ImageView>
+      <ImageView fx:id="armorerImageView" fitHeight="99.0" fitWidth="98.0" layoutX="545.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/BasicArmorer.png" />
+         </image></ImageView>
+      <ToggleButton fx:id="meleeButton" focusTraversable="false" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" onAction="#setShotSumNotSelected" prefHeight="24.0" prefWidth="76.0" text="Melee" />
+      <ToggleButton fx:id="shotsButton" focusTraversable="false" layoutX="90.0" layoutY="221.0" mnemonicParsing="false" onAction="#setMeleeNotSelected" prefHeight="24.0" prefWidth="106.0" text="ShotSum" />
+      <Button fx:id="clearButton" focusTraversable="false" layoutX="290.0" layoutY="221.0" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="141.0" text="Clear" />
+      <TextField fx:id="joustingField" focusTraversable="false" layoutX="15.0" layoutY="221.0" prefHeight="25.0" prefWidth="141.0" promptText="step count" />
+      <CheckBox fx:id="ringOfVitality" focusTraversable="false" layoutX="513.0" layoutY="416.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="106.0" text="Ring of Vitality" />
+      <CheckBox fx:id="vileOfLifeblood" focusTraversable="false" layoutX="513.0" layoutY="524.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="112.0" text="Vial of Lifeblood" />
+      <CheckBox fx:id="ringOfLife" focusTraversable="false" layoutX="513.0" layoutY="470.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="106.0" text="Ring of Life" />
+      <ImageView fx:id="ringOfVitalityImageView" fitHeight="44.0" fitWidth="44.0" layoutX="453.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/RingOfVitality.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ringOfLifeImageView" fitHeight="44.0" fitWidth="44.0" layoutX="453.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/RingOfLife.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="vileOfLifebloodImageView" fitHeight="44.0" fitWidth="44.0" layoutX="453.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/VileOfLifeblood.gif" />
+         </image>
+      </ImageView>
+      <RadioButton fx:id="advancedBless" focusTraversable="false" layoutX="455.0" layoutY="225.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" text="Advanced Bless">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="spellBuff" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="advancedCurse" focusTraversable="false" layoutX="454.0" layoutY="315.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" prefWidth="157.0" text="Advanced Curse" toggleGroup="$spellBuff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <ImageView fx:id="curseImageView" fitHeight="73.0" fitWidth="98.0" layoutX="627.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Curse.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="blessImageView" fitHeight="74.0" fitWidth="141.0" layoutX="628.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Bless.png" />
+         </image>
+      </ImageView>
+      <RadioButton fx:id="noSpellBuffs" focusTraversable="false" layoutX="455.0" layoutY="135.0" mnemonicParsing="false" onAction="#setSpellBuffIcon" selected="true" text="None" toggleGroup="$spellBuff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <ImageView fx:id="elixirOfLifImageView" fitHeight="68.0" fitWidth="64.0" layoutX="648.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/ElixirOfLife.gif" />
+         </image>
+      </ImageView>
+      <CheckBox fx:id="elixirOfLife" focusTraversable="false" layoutX="712.0" layoutY="470.0" mnemonicParsing="false" onAction="#setArtifactsIcons" prefHeight="17.0" prefWidth="106.0" text="Elixir of Life" />
+      <ImageView fx:id="bowImageView" fitHeight="33.0" fitWidth="38.0" layoutX="730.0" layoutY="8.0" onMouseClicked="#setBowOpacity" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Bow.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="bowstringImageView" fitHeight="33.0" fitWidth="38.0" layoutX="730.0" layoutY="41.0" onMouseClicked="#setBowstringOpacity" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/Bowstring.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="angelFeatherImageView" fitHeight="33.0" fitWidth="38.0" layoutX="730.0" layoutY="74.0" onMouseClicked="#setAngelFeatherOpacity" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../java/AngelFeather.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
