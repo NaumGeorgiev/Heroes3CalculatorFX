@@ -263,6 +263,7 @@ public class DamageUIController {
                                         defence,
                                         armorer, offence, archery, offenseHeroLevel, archeryHeroLevel, armorerHeroLevel,
                                         isRanged, minDamage, maxDamage, creatureCount);
+                                        
                         int[] damage = damageCalculator.calculate(attacker, defender, shotsButton.isSelected(),
                                         isAdvancedBlessed, isAdvancedCursed, joustingSteps,
                                         bowImageView.getOpacity() == 1.0, bowstringImageView.getOpacity() == 1.0,
