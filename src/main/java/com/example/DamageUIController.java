@@ -51,9 +51,9 @@ public class DamageUIController {
                 Utilities.addFilter(attackerComboBox, creatures);
                 Utilities.addFilter(defenderComboBox, creatures);
 
-                attackerComboBox.setValue("Zealot");
-                defenderComboBox.setValue("Zealot");
-                creatureCountField.setText("10");
+                // attackerComboBox.setValue("Zealot");
+                // defenderComboBox.setValue("Zealot");
+                // creatureCountField.setText("10");
                 Utilities.setImageViewDefault(offenseImageView, skillsIcons[0]);
                 Utilities.setImageViewDefault(archeryImageView, skillsIcons[3]);
                 Utilities.setImageViewDefault(armorerImageView, skillsIcons[6]);
